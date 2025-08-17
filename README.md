@@ -1,9 +1,7 @@
-# Helpdesk Ticket Management System
-
-A modern, responsive web-based helpdesk ticket management system built with Node.js, Express, and MySQL. Features a clean interface with both list and Kanban board views for efficient ticket management.
+#  Ticket Management System
+A modern, responsive web-based ticket management system built with Node.js, Express, and MySQL. Features a clean interface with both list and board views for efficient ticket management.
 
 ## Features
-
 ### Ticket Management
 - **Create New Tickets** - Simple form with validation for title, description, and contact information
 - **Status Tracking** - Four status levels: Pending, Accepted, Resolved, Rejected
@@ -12,7 +10,7 @@ A modern, responsive web-based helpdesk ticket management system built with Node
 
 ### Multiple Views
 - **List View** - Traditional table-style ticket listing with filtering and search
-- **Kanban Board** - Drag-and-drop interface for visual ticket management
+- **Board** - Drag-and-drop interface for visual ticket management
 - **Advanced Filtering** - Filter by status, search by title
 
 ### User Experience
@@ -28,28 +26,22 @@ A modern, responsive web-based helpdesk ticket management system built with Node
 - **Input Sanitization** - XSS protection and data validation
 
 ## Screenshots
-
 ### New Ticket Creation
 <img width="1849" height="923" alt="Screenshot 2025-08-17 211953" src="https://github.com/user-attachments/assets/09e0525c-5edc-4afc-ba49-d79c6d0de7f8" />
-
 
 ### Ticket Backlog View
 <img width="1820" height="968" alt="Screenshot 2025-08-17 212019" src="https://github.com/user-attachments/assets/1280f3a1-9f07-48a4-898b-8f0c0c8a428a" />
 
-
-### Kanban Board Interface
+### Board Interface
 <img width="1840" height="946" alt="Screenshot 2025-08-17 212045" src="https://github.com/user-attachments/assets/089a6aa6-ab9f-45aa-a94e-7e8c692a2019" />
 
-
 ## Quick Start
-
 ### Prerequisites
 - Node.js (v14.0.0 or higher)
 - MySQL (v5.7 or higher)
 - npm or yarn package manager
 
 ### Installation
-
 1. **Clone the repository**
    ```bash
    git clone https://github.com/natthaphong010245/Test-Nipa-Technology.git
@@ -75,21 +67,16 @@ A modern, responsive web-based helpdesk ticket management system built with Node
 
 4. **Start the server**
    ```bash
-   # Development mode with auto-reload
-   npm run dev
-   
-   # Or production mode
-   npm start
+   cd server
+   npx nodemon index.js
    ```
 
 5. **Access the application**
    Open your browser and navigate to `http://localhost:8000`
 
-
 ## 🔌 API Endpoints
-
 ### Tickets
-- `GET /tickets` - Retrieve all tickets ( optional filtering)
+- `GET /tickets` - Retrieve all tickets (optional filtering)
 - `POST /tickets` - Create a new ticket
 - `GET /tickets/:id` - Get a specific ticket
 - `PUT /tickets/:id` - Update a ticket (typically status changes)
@@ -98,7 +85,3 @@ A modern, responsive web-based helpdesk ticket management system built with Node
 - `status` - Filter by ticket status (pending, accepted, resolved, rejected)
 - `sortBy` - Sort by field (created_at, updated_at, status, title)
 - `order` - Sort order (ASC, DESC)
-
-**Built with ❤️ for NIPA Technology**
-
-*A modern helpdesk solution for efficient ticket management*
