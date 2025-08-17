@@ -1,0 +1,33 @@
+{
+    "name": "helpdesk-ticket-system",
+    "version": "1.0.0",
+    "description": "Helpdesk Support Ticket Management System API",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "dev": "nodemon index.js",
+        "test": "node test-connection.js"
+    },
+    "keywords": [
+        "helpdesk",
+        "ticket",
+        "support",
+        "api",
+        "express",
+        "mysql"
+    ],
+    "author": "Your Name",
+    "license": "MIT",
+    "dependencies": {
+        "express": "^4.18.2",
+        "body-parser": "^1.20.2",
+        "cors": "^2.8.5",
+        "mysql2": "^3.6.5"
+    },
+    "devDependencies": {
+        "nodemon": "^3.0.2"
+    },
+    "engines": {
+        "node": ">=14.0.0"
+    }
+}

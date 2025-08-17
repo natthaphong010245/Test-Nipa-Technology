@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helpdesk Ticket System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <div class="container">
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button id="navCreate" class="nav-tab active" aria-label="New ticket">New Ticket</button>
+            <button id="navAll" class="nav-tab" aria-label="Backlog">Backlog</button>
+            <button id="navKanban" class="nav-tab" aria-label="Backlog">Board</button>
+        </div>
+
+        <!-- Create Ticket Section -->
+        <section id="createSection" role="main">
+            <div class="content-card">
+                <h2 class="section-title"> New Ticket</h2>
+                <form id="ticketForm" novalidate>
+                    <div class="form-group">
+                        <label class="form-label" for="title">
+                            Title <span style="color: #ef4444;">*</span>
+                        </label>
+                        <input type="text" id="title" class="form-input" required maxlength="200" placeholder="Brief description of your issue" aria-describedby="titleError" />
+                        <div id="titleError" class="error-message" role="alert"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="description">
+                            Description <span style="color: #ef4444;">*</span>
+                        </label>
+                        <textarea id="description" class="form-input form-textarea" required maxlength="1000" placeholder="Please provide detailed information about your issue" aria-describedby="descriptionError"></textarea>
+                        <div id="descriptionError" class="error-message" role="alert"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="contact">
+                            Contact Information <span style="color: #ef4444;">*</span>
+                        </label>
+                        <input type="text" id="contact" class="form-input" required maxlength="100" placeholder="Email or phone number" aria-describedby="contactError" />
+                        <div id="contactError" class="error-message" role="alert"></div>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <span class="btn-text">Create Ticket</span>
+                        <div class="btn-loading">
+                            <div class="spinner"></div>
+                        </div>
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- All Tickets Section -->
+        <section id="allSection" class="hidden" role="main">
+            <div class="content-card">
+                <h2 class="section-title">Backlog</h2>
+
+                <div class="filter-section">
+                    <div class="filter-toolbar">
+                        <div class="search-container">
+                            <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                            <input type="text" id="ticketSearch" class="search-input" placeholder="Search tickets..." />
+                        </div>
+
+                        <div class="status-filter-dropdown">
+                            <button type="button" id="statusFilterBtn" class="status-filter-btn">
+                                <span id="statusFilterText">Status</span>
+                                <svg id="dropdownArrow" class="dropdown-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                                <span id="statusCount" class="status-count hidden"></span>
+                            </button>
+                            <div id="statusDropdown" class="status-dropdown-menu hidden">
+                                <label class="status-option">
+                                    <input type="checkbox" value="pending">
+                                    <span class="status-icon pending"></span>
+                                    Pending
+                                </label>
+                                <label class="status-option">
+                                    <input type="checkbox" value="accepted">
+                                    <span class="status-icon accepted"></span>
+                                    Accepted
+                                </label>
+                                <label class="status-option">
+                                    <input type="checkbox" value="resolved">
+                                    <span class="status-icon resolved"></span>
+                                    Resolved
+                                </label>
+                                <label class="status-option">
+                                    <input type="checkbox" value="rejected">
+                                    <span class="status-icon rejected"></span>
+                                    Rejected
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="button" id="clearFiltersBtn" class="clear-filters-btn">Clear filters</button>
+                    </div>
+                </div>
+
+                <div class="tickets-section">
+                    <h3 class="section-subtitle">
+                        Ticket List
+                        <span id="ticketListCount" class="ticket-list-count">0</span>
+                    </h3>
+                    <div id="tickets" role="region" aria-label="Tickets list" aria-live="polite"></div>
+                </div>
+            </div>
+        </section>
+
+        <!--  Board Section -->
+        <section id="kanbanSection" class="hidden" role="main">
+            <div class="content-card">
+                <h2 class="section-title">Board</h2>
+
+                <div class="kanban-board">
+                    <div class="kanban-column" data-status="pending">
+                        <div class="kanban-header">
+                            <h3 class="kanban-title">
+                                <span class="status-icon pending"></span> Pending
+                            </h3>
+                            <span class="ticket-count" id="pending-count">0</span>
+                        </div>
+                        <div class="kanban-content" id="pending-tickets"></div>
+                    </div>
+
+                    <div class="kanban-column" data-status="accepted">
+                        <div class="kanban-header">
+                            <h3 class="kanban-title">
+                                <span class="status-icon accepted"></span> Accepted
+                            </h3>
+                            <span class="ticket-count" id="accepted-count">0</span>
+                        </div>
+                        <div class="kanban-content" id="accepted-tickets"></div>
+                    </div>
+
+                    <div class="kanban-column" data-status="resolved">
+                        <div class="kanban-header">
+                            <h3 class="kanban-title">
+                                <span class="status-icon resolved"></span> Resolved
+                            </h3>
+                            <span class="ticket-count" id="resolved-count">0</span>
+                        </div>
+                        <div class="kanban-content" id="resolved-tickets"></div>
+                    </div>
+
+                    <div class="kanban-column" data-status="rejected">
+                        <div class="kanban-header">
+                            <h3 class="kanban-title">
+                                <span class="status-icon rejected"></span> Rejected
+                            </h3>
+                            <span class="ticket-count" id="rejected-count">0</span>
+                        </div>
+                        <div class="kanban-content" id="rejected-tickets"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
