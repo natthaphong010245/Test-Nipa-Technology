@@ -53,7 +53,28 @@ A modern, responsive web-based ticket management system built with Node.js, Expr
    npm install
    ```
 
-3. **Configure database connection**
+3. **Set up the database**
+
+   Connect to your MySQL server and run the following SQL commands:
+
+   ```sql
+   -- Create the database
+   CREATE DATABASE IF NOT EXISTS helpdesk_system;
+   USE helpdesk_system;
+
+   -- Create the tickets table
+   CREATE TABLE tickets (
+       id INT AUTO_INCREMENT PRIMARY KEY,
+       title VARCHAR(255) NOT NULL,
+       description TEXT NOT NULL,
+       contact_information VARCHAR(255) NOT NULL,
+       status ENUM('pending', 'accepted', 'resolved', 'rejected') DEFAULT 'pending',
+       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+       updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+   );
+   ```
+
+4. **Configure database connection**
    Edit `server/index.js` and update the database configuration:
    ```javascript
    const conn = await mysql.createConnection({
@@ -65,13 +86,13 @@ A modern, responsive web-based ticket management system built with Node.js, Expr
    })
    ```
 
-4. **Start the server**
+5. **Start the server**
    ```bash
    cd server
    npx nodemon index.js
    ```
 
-5. **Access the application**
+6. **Access the application**
    Open your browser and navigate to `http://localhost:8000`
 
 ## 🔌 API Endpoints
