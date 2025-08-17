@@ -1,5 +1,3 @@
-// index.js
-
 // Configuration
 const API_URL = "http://localhost:8000/tickets";
 const TOAST_DURATION = 5000;
