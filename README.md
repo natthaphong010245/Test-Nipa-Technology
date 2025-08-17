@@ -30,16 +30,16 @@ A modern, responsive web-based helpdesk ticket management system built with Node
 ## Screenshots
 
 ### New Ticket Creation
-![New Ticket Form](https://via.placeholder.com/800x500/f8f9fa/6c757d?text=New+Ticket+Form)
-*Clean, intuitive form for creating new support tickets with real-time validation*
+<img width="1849" height="923" alt="Screenshot 2025-08-17 211953" src="https://github.com/user-attachments/assets/09e0525c-5edc-4afc-ba49-d79c6d0de7f8" />
+
 
 ### Ticket Backlog View
-![Backlog View](https://via.placeholder.com/800x500/f8f9fa/6c757d?text=Backlog+View)
-*Comprehensive list view with advanced filtering and search capabilities*
+<img width="1820" height="968" alt="Screenshot 2025-08-17 212019" src="https://github.com/user-attachments/assets/1280f3a1-9f07-48a4-898b-8f0c0c8a428a" />
+
 
 ### Kanban Board Interface
-![Board View](https://via.placeholder.com/800x500/f8f9fa/6c757d?text=Kanban+Board)
-*Visual Kanban board with drag-and-drop functionality for status management*
+<img width="1840" height="946" alt="Screenshot 2025-08-17 212045" src="https://github.com/user-attachments/assets/089a6aa6-ab9f-45aa-a94e-7e8c692a2019" />
+
 
 ## Quick Start
 
