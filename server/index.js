@@ -4,24 +4,28 @@ const cors = require('cors')
 const mysql = require('mysql2/promise')
 
 const app = express()
-const port = 8000
+const port = process.env.NODE_ENV === 'production' ?
+    (process.env.PORT || 8000) :
+    (process.env.DEV_PORT || 3001)
+
 let conn = null
 
 app.use(bodyParser.json())
 app.use(cors())
 app.use(express.static('public'))
 
-// Database connection
 const initMySQL = async() => {
     try {
         conn = await mysql.createConnection({
-            host: 'localhost',
-            user: 'root',
-            password: 'root',
-            database: 'helpdesk_system',
-            port: 3306
+            host: process.env.DB_HOST || 'localhost',
+            user: process.env.DB_USER || 'root',
+            password: process.env.DB_PASSWORD || 'root',
+            database: process.env.DB_NAME || 'helpdesk_system',
+            port: process.env.DB_PORT || 3306
         })
         console.log('Database connected successfully')
+        console.log(`Environment: ${process.env.NODE_ENV || 'development'}`)
+        console.log(`Database Host: ${process.env.DB_HOST || 'localhost'}`)
     } catch (error) {
         console.error('Database connection failed:', error.message)
         process.exit(1)

@@ -1,5 +1,5 @@
 // Configuration
-const API_URL = "http://localhost:8000/tickets";
+const API_URL = "http://localhost:3001/tickets";
 const TOAST_DURATION = 5000;
 
 // Global state
@@ -562,7 +562,7 @@ async function loadTickets() {
 
         if (currentTickets.length > 0 && !isUpdatingStatus) {
             setTimeout(() => {
-                ToastManager.success(`Loaded ${currentTickets.length} tickets`);
+                ToastManager.success(`List ${currentTickets.length} tickets`);
             }, 200);
         }
     } catch (error) {
@@ -580,7 +580,7 @@ async function loadKanbanTickets() {
         displayKanbanTickets(currentTickets);
 
         if (currentTickets.length > 0) {
-            ToastManager.success(`Loaded ${currentTickets.length} tickets`);
+            ToastManager.success(`List ${currentTickets.length} tickets`);
         }
     } catch (error) {
         console.error('Error loading kanban tickets:', error);
